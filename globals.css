@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #faf9ff;
+  color: #1e1b3a;
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.float {
+  animation: float 5s ease-in-out infinite;
+}
