@@ -1,168 +1,297 @@
-import Image from "next/image";
-import Reveal from "../components/Reveal";
 
-const designSkills = ["Figma", "Wireframing", "Prototyping", "Usability Testing"];
-const devSkills = ["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"];
+"use client";
+
+import { useState } from "react";
 
 const projects = [
-  { id: 1, no: "01", tag: "FINTECH", title: "PayEasy", text: "A clean payment app interface focused on quick and easy money transfer.", color: "from-violet-500 to-fuchsia-500" },
-  { id: 2, no: "02", tag: "UX RESEARCH", title: "Usability Project", text: "A usability study to find design problems and improve the user experience.", color: "from-sky-500 to-indigo-500" },
-  { id: 3, no: "03", tag: "TRACKING", title: "Student Activity Tracker", text: "A system to record and track student activities in one organised place.", color: "from-pink-500 to-orange-400" },
-];
-
-const steps = [
-  { n: "1", title: "Research", text: "Understand users and their problems." },
-  { n: "2", title: "Design", text: "Sketch, wireframe and prototype ideas." },
-  { n: "3", title: "Build", text: "Turn the design into a working website." },
-  { n: "4", title: "Test", text: "Improve it using real feedback." },
+  {
+    name: "Foodex",
+    category: "Food Delivery App",
+    description:
+      "A user-friendly food delivery app designed to make ordering food simple and enjoyable.",
+    number: "01",
+  },
+  {
+    name: "EasyPay",
+    category: "Fintech App",
+    description:
+      "A simple and secure payment experience with clean navigation and easy transactions.",
+    number: "02",
+  },
+  {
+    name: "EduLearn",
+    category: "Education App",
+    description:
+      "An online learning platform that helps students explore courses and learn easily.",
+    number: "03",
+  },
+  {
+    name: "ShopEasy",
+    category: "E-commerce App",
+    description:
+      "A modern shopping experience with intuitive product browsing and smooth checkout.",
+    number: "04",
+  },
+  {
+    name: "Medicare",
+    category: "Healthcare App",
+    description:
+      "A healthcare application designed to make appointments and medical services accessible.",
+    number: "05",
+  },
 ];
 
 export default function Home() {
-  return (
-    <main className="relative overflow-hidden">
-      {/* background blobs */}
-      <div className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-violet-300/40 blur-3xl" />
-      <div className="pointer-events-none absolute top-40 -right-32 h-96 w-96 rounded-full bg-pink-300/40 blur-3xl" />
+  const [menuOpen, setMenuOpen] = useState(false);
 
-      {/* NAV */}
-      <nav className="sticky top-0 z-20 mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 border-b border-white/60 bg-white/60 px-6 py-4 backdrop-blur-lg">
-        <span className="bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-xl font-extrabold text-transparent">NC.</span>
-        <div className="flex flex-wrap gap-6 text-sm font-medium text-stone-600">
-          <a href="#home" className="transition hover:text-violet-600">Home</a>
-          <a href="#about" className="transition hover:text-violet-600">About</a>
-          <a href="#projects" className="transition hover:text-violet-600">Projects</a>
-          <a href="#contact" className="transition hover:text-violet-600">Contact</a>
+  return (
+    <main>
+      <nav className="navbar">
+        <a href="#" className="logo">
+          N<span>.</span>
+        </a>
+
+        <button
+          className="menu-button"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+
+        <div className={`nav-links ${menuOpen ? "show" : ""}`}>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact" className="nav-contact">
+            Contact Me
+          </a>
         </div>
       </nav>
 
-      {/* HOME */}
-      <section id="home" className="relative mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-6 py-16 md:flex-row md:py-28">
-        <div className="flex-1">
-          <Reveal>
-            <span className="inline-block rounded-full bg-white px-4 py-1 text-xs font-semibold text-violet-600 shadow">
-              ✨ UI/UX Designer
-            </span>
-            <h1 className="mt-5 text-4xl font-extrabold leading-tight md:text-6xl">
-              Hi, I&apos;m <span className="bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-transparent">Nikita Chaudhari</span>
-            </h1>
-            <h2 className="mt-3 text-lg font-medium text-stone-500 md:text-xl">MCA Student | Designing simple, beautiful experiences</h2>
-            <p className="mt-4 max-w-md text-stone-600">
-              I enjoy turning ideas into clean, easy-to-use interfaces that people love.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#projects" className="rounded-full bg-linear-to-r from-violet-600 to-pink-500 px-7 py-3 font-semibold text-white shadow-lg transition hover:scale-105">View My Work</a>
-              <a href="#contact" className="rounded-full bg-white px-7 py-3 font-semibold text-violet-600 shadow transition hover:scale-105">Contact Me</a>
-            </div>
-            <div className="mt-10 flex gap-8">
-              <div><p className="text-2xl font-extrabold">3</p><p className="text-xs text-stone-500">Projects</p></div>
-              <div><p className="text-2xl font-extrabold">UI/UX</p><p className="text-xs text-stone-500">Focus</p></div>
-              <div><p className="text-2xl font-extrabold">MCA</p><p className="text-xs text-stone-500">2026-27</p></div>
-            </div>
-          </Reveal>
-        </div>
-        <Reveal delay={0.2}>
-          <div className="float rounded-full bg-linear-to-br from-violet-400 to-pink-400 p-2 shadow-2xl">
-            <Image src="/me.jpeg" alt="Nikita Chaudhari" width={320} height={320} className="w-[320px] h-[320] aspect-square object-cover rounded-full" />
+      <section className="hero" id="home">
+        <div className="hero-content">
+          <div className="availability">
+            <span></span> Available for opportunities
           </div>
-        </Reveal>
-      </section>
 
-      {/* ABOUT */}
-      <section id="about" className="relative mx-auto max-w-6xl px-6 py-16">
-        <Reveal>
-          <p className="text-sm font-semibold tracking-widest text-violet-600">GET TO KNOW ME</p>
-          <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">About Me</h2>
-        </Reveal>
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-          <Reveal>
-            <div className="h-full rounded-3xl bg-white p-8 shadow-lg">
-              <h3 className="text-xl font-bold">My Journey</h3>
-              <p className="mt-3 text-stone-600">
-                I am an MCA student at R. H. Sapat College of Engineering, Management Studies and Research, Nashik.
-                I love UI/UX design and building user-friendly websites.
-              </p>
+          <p className="intro">Hello, I'm</p>
+
+          <h1>
+            Nikita
+            <br />
+            <span>Chaudhari.</span>
+          </h1>
+
+          <h2>UI/UX Designer & Frontend Developer</h2>
+
+          <p className="hero-description">
+            MCA Student passionate about creating modern,
+            user-friendly and visually beautiful digital
+            experiences.
+          </p>
+
+          <div className="hero-buttons">
+            <a href="#projects" className="primary-button">
+              Explore My Work ↗
+            </a>
+
+            <a href="#contact" className="secondary-button">
+              Contact Me
+            </a>
+          </div>
+
+          <div className="hero-stats">
+            <div>
+              <h3>05+</h3>
+              <p>UI/UX Projects</p>
             </div>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="h-full rounded-3xl bg-white p-8 shadow-lg">
-              <h3 className="text-xl font-bold">Skills</h3>
-              <p className="mt-3 text-xs font-semibold tracking-widest text-stone-400">DESIGN</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {designSkills.map((s) => (
-                  <span key={s} className="rounded-full bg-pink-100 px-4 py-1.5 text-sm text-pink-700 transition hover:scale-110">{s}</span>
-                ))}
-              </div>
-              <p className="mt-4 text-xs font-semibold tracking-widest text-stone-400">DEVELOPMENT</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {devSkills.map((s) => (
-                  <span key={s} className="rounded-full bg-violet-100 px-4 py-1.5 text-sm text-violet-700 transition hover:scale-110">{s}</span>
-                ))}
-              </div>
+
+            <div>
+              <h3>Figma</h3>
+              <p>Design Tool</p>
             </div>
-          </Reveal>
+
+            <div>
+              <h3>MCA</h3>
+              <p>2026–27</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="hero-visual">
+          <div className="glow"></div>
+
+          <div className="profile-card">
+            <div className="profile-top">
+              <span>PORTFOLIO / 2026</span>
+              <span>✦</span>
+            </div>
+
+            <div className="profile-circle">
+              <img
+                src="/profile.jpeg"
+                alt="Nikita Chaudhari"
+                className="profile-photo"
+              />
+            </div>
+
+            <h3>Nikita Chaudhari</h3>
+            <p>Designing with purpose.</p>
+
+            <div className="profile-tags">
+              <span>UI/UX</span>
+              <span>Figma</span>
+              <span>Frontend</span>
+            </div>
+          </div>
+
+          <div className="floating-card float-one">
+            ✦ Creative Design
+          </div>
+
+          <div className="floating-card float-two">
+            <span>✧</span> User Experience
+          </div>
         </div>
       </section>
 
-      {/* DESIGN PROCESS */}
-      <section className="relative mx-auto max-w-6xl px-6 py-16">
-        <Reveal>
-          <p className="text-sm font-semibold tracking-widest text-violet-600">HOW I WORK</p>
-          <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">My Design Process</h2>
-        </Reveal>
-        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.12}>
-              <div className="h-full rounded-3xl bg-white p-6 shadow transition hover:-translate-y-2 hover:shadow-xl">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-violet-500 to-pink-500 font-bold text-white">{s.n}</span>
-                <h3 className="mt-4 text-lg font-bold">{s.title}</h3>
-                <p className="mt-1 text-sm text-stone-600">{s.text}</p>
+      <section className="about section" id="about">
+        <div className="section-label">01 / ABOUT ME</div>
+
+        <h2 className="section-title">
+          Designing digital
+          <br />
+          <span>experiences that matter.</span>
+        </h2>
+
+        <div className="about-card">
+          <p>
+            I am Nikita Chaudhari, an MCA student and aspiring
+            UI/UX Designer with a passion for creating simple,
+            beautiful and user-friendly interfaces.
+          </p>
+
+          <p>
+            I enjoy transforming ideas into meaningful digital
+            experiences using creativity, design thinking and
+            modern tools like Figma.
+          </p>
+        </div>
+      </section>
+
+      <section className="projects section" id="projects">
+        <div className="section-label">02 / SELECTED WORK</div>
+
+        <div className="section-heading">
+          <h2 className="section-title">
+            My Creative <span>Projects.</span>
+          </h2>
+
+          <p>Ideas transformed into digital experiences.</p>
+        </div>
+
+        <div className="project-grid">
+          {projects.map((project, index) => (
+            <article
+              className={`project-card project-${index + 1}`}
+              key={project.name}
+            >
+              <div className="project-top">
+                <span>{project.number}</span>
+                <span>↗</span>
               </div>
-            </Reveal>
+
+              <div className="project-art">
+                <div className="art-circle">
+                  {project.name.charAt(0)}
+                </div>
+              </div>
+
+              <div className="project-info">
+                <p className="project-category">
+                  {project.category}
+                </p>
+
+                <h3>{project.name}</h3>
+
+                <p>{project.description}</p>
+
+                <span className="project-link">
+                  UI/UX Case Study <span>↗</span>
+                </span>
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      {/* PROJECTS */}
-      <section id="projects" className="relative mx-auto max-w-6xl px-6 py-16">
-        <Reveal>
-          <p className="text-sm font-semibold tracking-widest text-violet-600">WHAT I&apos;VE BEEN WORKING ON</p>
-          <h2 className="mt-2 text-3xl font-extrabold md:text-4xl">Projects</h2>
-        </Reveal>
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p, i) => (
-            <Reveal key={p.id} delay={i * 0.15}>
-              <div className="group h-full overflow-hidden rounded-3xl bg-white shadow-lg transition hover:-translate-y-2 hover:shadow-2xl">
-                <div className={`flex h-36 items-end bg-linear-to-br ${p.color} p-5`}>
-                  <span className="text-5xl font-extrabold text-white/80 transition group-hover:scale-110">{p.no}</span>
-                </div>
-                <div className="p-6">
-                  <p className="text-xs font-semibold tracking-widest text-violet-600">{p.tag}</p>
-                  <h3 className="mt-2 text-xl font-bold">{p.title}</h3>
-                  <p className="mt-2 text-stone-600">{p.text}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+      <section className="skills section" id="skills">
+        <div className="section-label">03 / MY EXPERTISE</div>
+
+        <h2 className="section-title">
+          Skills & <span>Tools.</span>
+        </h2>
+
+        <div className="skills-grid">
+          <div className="skill-card">
+            <span>✦</span>
+            <h3>UI/UX Design</h3>
+            <p>Wireframing, User Research, Prototyping</p>
+          </div>
+
+          <div className="skill-card">
+            <span>◈</span>
+            <h3>Figma</h3>
+            <p>UI Design, Components, Auto Layout</p>
+          </div>
+
+          <div className="skill-card">
+            <span>⌘</span>
+            <h3>Frontend</h3>
+            <p>HTML, CSS, Responsive Design</p>
+          </div>
+
+          <div className="skill-card">
+            <span>✧</span>
+            <h3>Graphic Design</h3>
+            <p>Visual Design, Color, Typography</p>
+          </div>
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="relative mx-auto max-w-4xl px-6 py-16">
-        <Reveal>
-          <div className="rounded-3xl bg-linear-to-br from-violet-600 to-pink-500 p-10 text-center text-white shadow-2xl">
-            <h2 className="text-3xl font-extrabold md:text-4xl">Let&apos;s Connect</h2>
-            <p className="mx-auto mt-3 max-w-md text-white/90">Have a project or an idea? I would love to hear from you.</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a href="mailto:yourname@gmail.com" className="rounded-full bg-white px-7 py-3 font-semibold text-violet-600 transition hover:scale-105">✉ Email Me</a>
-              <a href="https://www.linkedin.com/" className="rounded-full border border-white px-7 py-3 font-semibold transition hover:scale-105">LinkedIn</a>
-              <a href="https://github.com/" className="rounded-full border border-white px-7 py-3 font-semibold transition hover:scale-105">GitHub</a>
-            </div>
-          </div>
-        </Reveal>
+      <section className="contact section" id="contact">
+        <div className="contact-box">
+          <div className="section-label">04 / GET IN TOUCH</div>
+
+          <h2>
+            Let's create
+            <br />
+            something <span>amazing.</span>
+          </h2>
+
+          <p>
+            I am open to internship and job opportunities.
+            Let's connect and create something meaningful.
+          </p>
+
+          <a
+            href="mailto:your-email@example.com"
+            className="primary-button"
+          >
+            Let's Connect ↗
+          </a>
+        </div>
       </section>
 
-      <footer className="relative py-8 text-center text-sm text-stone-500">
-        Designed &amp; built with care by Nikita Chaudhari © 2026
+      <footer>
+        <a href="#" className="logo">
+          N<span>.</span>
+        </a>
+
+        <p>Designed with creativity by Nikita Chaudhari © 2026</p>
+
+        <a href="#home">Back to Top ↑</a>
       </footer>
     </main>
   );
